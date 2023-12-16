@@ -9,17 +9,22 @@ from launch.substitutions import Command
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_prefix
+import xacro
 
 # this is the function launch  system will look for
 def generate_launch_description():
 
-    ####### DATA INPUT ##########
-    urdf_file = 'barista_robot_model.urdf'
     package_description = "barista_robot_description"
 
-    ####### DATA INPUT END ##########
-    print("Fetching URDF ==>")
-    robot_desc_path = os.path.join(get_package_share_directory(package_description), "urdf", urdf_file)
+    robot_model_path = os.path.join(
+        get_package_share_directory('barista_robot_description'))
+
+    xacro_file = os.path.join(robot_model_path, 'xacro', 'barista_robot_model.urdf.xacro')
+
+    # convert XACRO file into URDF
+    doc = xacro.parse(open(xacro_file))
+    xacro.process_doc(doc)
+    params = {'robot_description': doc.toxml()}
 
     # Robot State Publisher
 
@@ -28,8 +33,7 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher_node',
         emulate_tty=True,
-        parameters=[{'use_sim_time': True, 'robot_description': Command(['xacro ', robot_desc_path])}],
-        output="screen"
+        parameters=[params]
     )
 
     # RVIZ Configuration
@@ -84,7 +88,7 @@ def generate_launch_description():
     # [Roll, Pitch, Yaw]
     orientation = [0.0, 0.0, 0.0]
     # Base Name or robot
-    robot_base_name = "box_bot"
+    robot_base_name = "barrista_bot"
 
 
     entity_name = robot_base_name+"-"+str(int(random.random()*100000))

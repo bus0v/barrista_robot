@@ -33,6 +33,7 @@ install(
 	urdf
 	meshes
 	worlds
+	xacro
   DESTINATION
     share/${PROJECT_NAME}/
 )
