@@ -1,11 +1,15 @@
 This repo is used to practice created a robot description using URDF and Xacro. 
-Original robot
+
+**Original robot**
+
 ![image](https://github.com/bus0v/barrista_robot/assets/51008991/460d073f-f2c1-4086-b980-399d7b224f52)
 
-Gazebo representation
+**Gazebo representation**
+
 ![image](https://github.com/bus0v/barrista_robot/assets/51008991/83b42127-c49b-4c8c-ac67-7b71fa1d6041)
 
-Rviz Representation
+**Rviz Representation**
+
 ![image](https://github.com/bus0v/barrista_robot/assets/51008991/899223ad-d5c6-47e9-9016-88b032e01d35)
 
 The urdf folder contains the urdf model, without any macros and can be launch with the urdf launch file. The xacro folder contains the same robot descriptions, but it is split up into various macros.
