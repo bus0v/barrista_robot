@@ -1,27 +1,47 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name = "barista_bot">
+    <xacro:include filename="$(find barista_robot_description)/xacro/standoff.xacro"/>
+    <xacro:include filename="$(find barista_robot_description)/xacro/wheel.xacro"/>
+    <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
     <!-- Materials-->
-        <material name="red">
-            <color rgba="1.0 0.0 0.0 1"/>
-        </material>
+    <material name="red">
+        <color rgba="1.0 0.0 0.0 1"/>
+    </material>
 
-        <material name="green_light">
-            <color rgba="0.0 1.0 0.0 1"/>
-        </material>
+    <material name="green_light">
+        <color rgba="0.0 1.0 0.0 1"/>
+    </material>
 
-        <material name="green_dark">
-            <color rgba="0.0 0.5 0.0 1"/>
-        </material>
+    <material name="green_dark">
+        <color rgba="0.0 0.5 0.0 1"/>
+    </material>
 
-        <material name="blue">
-            <color rgba="0.0 0.0 1.0 1"/>
-        </material>
-        <material name="white">
-            <color rgba="1.0 1.0 1.0 1"/>
-        </material>
-        <material name="black">
-            <color rgba="0.0 0.0 0.0 1"/>
-        </material>
+    <material name="blue">
+        <color rgba="0.0 0.0 1.0 1"/>
+    </material>
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1"/>
+    </material>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="tray_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="front_yaw_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="back_yaw_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
         
   <link name="base_link">
   </link>
@@ -54,9 +74,6 @@
     <child link="chassis" />
   </joint>
 
-
-<xacro:include filename="$(find barista_robot_description)/xacro/standoff.xacro"/>
-
 <joint name="fr_rod_joint" type="fixed">
     <origin rpy="1.5707 0 0" xyz="0.05 0.14 0.1875" />
     <parent link="chassis"/>
@@ -85,7 +102,6 @@
     <axis xyz="0 0 1" />
 </joint>
 
-<xacro:include filename="$(find barista_robot_description)/xacro/wheel.xacro"/>
 
 <joint name="joint_left_wheel" type="continuous">
     <origin rpy="0 0 0" xyz="0 0.12 -0.075"/>
@@ -105,7 +121,6 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
-<xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
 
 
 <xacro:arg name="include_laser" default="true"/>
@@ -226,7 +241,6 @@
         <mass value="0.1"/>
         <inertia ixx="3.45123e-05" ixy="0" ixz="0" iyy="3.45123e-05" iyz="0" izz="3.45123e-05"/>
     </inertial>
- 
   </link>
 
   <joint name="front_yaw_joint" type="continuous">
@@ -287,7 +301,6 @@
         <mass value="0.1"/>
         <inertia ixx="3.45123e-05" ixy="0" ixz="0" iyy="3.45123e-05" iyz="0" izz="3.45123e-05"/>
     </inertial>
-
   </link>
 
   <joint name="front_pitch_joint" type="continuous">
@@ -313,7 +326,6 @@
         <mass value="0.1"/>
         <inertia ixx="3.45123e-05" ixy="0" ixz="0" iyy="3.45123e-05" iyz="0" izz="3.45123e-05"/>
     </inertial>
-
   </link>
 
   <joint name="back_yaw_joint" type="continuous">
