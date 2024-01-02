@@ -35,8 +35,13 @@ install(
 	worlds
 	xacro
 	rviz
+	src
   DESTINATION
     share/${PROJECT_NAME}/
 )
 
+install(PROGRAMS
+  src/odomtf.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 ament_package()
