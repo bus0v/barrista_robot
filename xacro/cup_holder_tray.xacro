@@ -9,7 +9,7 @@
       <geometry>
         <cylinder length="0.090" radius="0.160"/>
       </geometry>
-      <material name="red"/>
+      <material name="main"/>
     </visual>
 
     <collision>

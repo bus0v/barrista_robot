@@ -61,6 +61,24 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
         [os.path.join(pkg_box_bot_gazebo, 'launch'),'/two_robots_spawn.launch.py']))
 
+    
+    static_tf_pub_rick = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher_turtle_odom',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', '/rick/odom']
+    )
+
+    static_tf_pub_morty = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher_turtle_odom',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', '/morty/odom']
+    )
 
     # create and return launch description object
     
@@ -72,10 +90,12 @@ def generate_launch_description():
           description='SDF world file'),
         DeclareLaunchArgument(
             'verbose', default_value='true',
-            description='Set "true" to increase messages written to terminal.'
+            description='Set "true" to increase messages written to terminal.',
         ),
         gazebo,
         two_robots_spawn,
-        rviz_node
+        rviz_node,
+        static_tf_pub_rick,
+        static_tf_pub_morty
         ]
     )
